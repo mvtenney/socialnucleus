@@ -21,7 +21,8 @@
         "livewire/livewire": "^2.0",
         "pbmedia/laravel-ffmpeg": "^7.2",
         "php-ffmpeg/php-ffmpeg": "^0.16.0",
-        "unsplash/unsplash": "^3.1"
+        "unsplash/unsplash": "^3.1",
+        "fzaninotto/faker": "^1.9.1"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",
