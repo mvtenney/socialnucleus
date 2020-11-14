@@ -22,7 +22,7 @@ class PostFactory extends Factory
      */
     public function definition()
     {
-        $user = User::orderByRaw('RAND()')->first();
+        $user = User::inRandomOrder()->first();
         return [
             'user_id' => $user->id,
             'title' => $this->faker->words(4, true),
