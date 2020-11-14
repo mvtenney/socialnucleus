@@ -3,8 +3,7 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
-use Faker\Generator as Faker;
-
+use App\Models\Post;
 class PostReviewCard extends Component
 {
     public $card;
@@ -12,26 +11,14 @@ class PostReviewCard extends Component
     /**
      * Create a new component instance.
      *
-     * @param array $cardData
+     * @param array $card
      * @return void
      */
 
-    public function __construct(Faker $faker)
+    public function __construct($card)
     {
-        $this->card = [
-            'image' => $faker->imageUrl($width = 225, $height = 225),
-            'title' => $faker->words(4, true),
-            'hashtags' => $faker->words(6, false),
-            'body' => $faker->realText($maxNbChars = 140, $indexSize = 2),
-        ];
+        $this->card = $card;
     }
-
-    // public function mockCards(){
-    //     $cardData = ;
-    //     $this->cardData = $cardData;
-    //     dd($this->cardData);
-    //     return $this->cardData;
-    // }
 
     /**
      * Get the view / contents that represent the component.
