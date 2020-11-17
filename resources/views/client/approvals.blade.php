@@ -11,12 +11,29 @@
             @php
              $posts = DB::table('posts')->where('post_status', 'pending')->get();
             @endphp
-            <div class="grid grid-cols-4 gap-4">
+            {{-- <div class="grid grid-cols-4 gap-4 mb-12">
                 @foreach($posts as $card)
                     <x-post-review-card :card=$card />
                 @endforeach
+            </div> --}}
+            <div class="p-4 bg-white border-4 border-white rounded-lg shadow-lg">
+                <table class="table-fixed">
+                    <thead>
+                        <tr>
+                            <th class="py-4 text-left bg-gray-400"></th>
+                            <th class="py-4 text-left bg-gray-400">Title</th>
+                            <th class="py-4 text-left bg-gray-400">Platforms</th>
+                            <th class="py-4 text-left bg-gray-400">Post</th>
+                            <th class="py-4 text-left bg-gray-400">Review</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($posts as $card)
+                            <x-post-review-list-item :card=$card />
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
-
         </div>
     </div>
 </x-app-layout>

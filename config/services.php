@@ -33,5 +33,16 @@ return [
     'unsplash' => [
         'key' => env('UNSPLASH_KEY'),
         'secret' =>  env('UNSPLASH_SECRET'),
-    ]
+    ],
+
+    'facebook' => [
+        'client_id' => env('FACEBOOK_ID'),
+        'client_secret' => env('FACEBOOK_SECRET'),
+        'redirect' => env('APP_URL') . '/auth/facebook/callback',
+    ],
+    'instagram' => [
+        'client_id' => env('INSTAGRAM_APP_ID'),
+        'client_secret' => env('INSTAGRAM_APP_SECRET'),
+        'redirect' => env('APP_URL') . '/auth/instagram/callback',
+    ],
 ];

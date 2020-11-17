@@ -19,7 +19,7 @@
                         {{ __('Approvals') }}
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('schedule') }}" :active="request()->routeIs('schedule')">
-                        {{ __('Schedule') }}
+                        {{ __('Calendar') }}
                     </x-jet-nav-link>
                 </div>
             </div>

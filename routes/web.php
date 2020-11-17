@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SocialController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +29,11 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/approvals', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/schedule', function () {
     return view('client.schedule');
 })->name('schedule');
+
+Route::get('auth/facebook', [SocialController::class, 'facebookRedirect']);
+
+Route::get('auth/facebook/callback', [SocialController::class, 'loginWithFacebook']);
+
+Route::get('auth/instagram', [SocialController::class, 'instagramRedirect']);
+
+Route::get('auth/instagram/callback', [SocialController::class, 'loginWithInstagram']);
