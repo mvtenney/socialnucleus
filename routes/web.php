@@ -18,6 +18,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/pricing', function () {
+    return view('site.pricing');
+})->name('pricing');;
+
+
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
@@ -29,6 +35,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/approvals', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/schedule', function () {
     return view('client.schedule');
 })->name('schedule');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/requests', function () {
+    return view('client.order.show');
+})->name('requests');
 
 Route::get('auth/facebook', [SocialController::class, 'facebookRedirect']);
 

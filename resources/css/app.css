@@ -1,10 +1,15 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+* {
+    font-family: 'Nunito', sans-serif;
+}
 .deco {
     font-family: 'Staatliches', cursive;
+    /* font-family: 'Brigmore Bold', cursive; */
 }
-@import '@fortawesome/fontawesome-free/css/all.css';
+
+/* @import '@fortawesome/fontawesome-free/css/all.css'; */
 body {
     animation-delay: 0.1s;
     animation-name: fontfix;

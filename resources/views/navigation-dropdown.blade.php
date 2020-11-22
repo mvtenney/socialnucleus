@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false }" class="bg-white border-t border-b border-gray-400">
     <!-- Primary Navigation Menu -->
     <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="flex items-center flex-shrink-0">
                     <a href="{{ route('dashboard') }}">
-                        <x-jet-application-mark class="block w-auto h-9" />
+                        <x-jet-application-mark class="block w-auto h-16" />
                     </a>
                 </div>
 
@@ -21,6 +21,9 @@
                     <x-jet-nav-link href="{{ route('schedule') }}" :active="request()->routeIs('schedule')">
                         {{ __('Calendar') }}
                     </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('requests') }}" :active="request()->routeIs('schedule')">
+                        {{ __('Requests') }}
+                    </x-jet-nav-link>
                 </div>
             </div>
 
@@ -31,11 +34,11 @@
                 <x-jet-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-                            <button class="flex text-sm transition duration-150 ease-in-out border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300">
+                            <button class="flex text-sm transition duration-150 ease-in-out border-2 border-transparent rounded-full focus:outline-none focus:border-yellow-300">
                                 <img class="object-cover w-8 h-8 rounded-full" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
                             </button>
                         @else
-                            <button class="flex items-center text-sm font-medium text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300">
+                            <button class="flex items-center text-sm font-medium text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 hover:border-yellow-300 focus:outline-none focus:text-gray-700 focus:border-yellow-300">
                                 <div>{{ Auth::user()->name }}</div>
 
                                 <div class="ml-1">
@@ -63,7 +66,7 @@
                             </x-jet-dropdown-link>
                         @endif
 
-                        <div class="border-t border-gray-100"></div>
+                        <div class="border-t border-yellow-100"></div>
 
                         <!-- Team Management -->
                         @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
@@ -82,7 +85,7 @@
                                 </x-jet-dropdown-link>
                             @endcan
 
-                            <div class="border-t border-gray-100"></div>
+                            <div class="border-t border-yellow-100"></div>
 
                             <!-- Team Switcher -->
                             <div class="block px-4 py-2 text-xs text-gray-400">
@@ -93,7 +96,7 @@
                                 <x-jet-switchable-team :team="$team" />
                             @endforeach
 
-                            <div class="border-t border-gray-100"></div>
+                            <div class="border-t border-yellow-100"></div>
                         @endif
 
                         <!-- Authentication -->
@@ -131,7 +134,7 @@
         </div>
 
         <!-- Responsive Settings Options -->
-        <div class="pt-4 pb-1 border-t border-gray-200">
+        <div class="pt-4 pb-1 border-t border-yellow-200">
             <div class="flex items-center px-4">
                 <div class="flex-shrink-0">
                     <img class="w-10 h-10 rounded-full" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
@@ -168,7 +171,7 @@
 
                 <!-- Team Management -->
                 @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
-                    <div class="border-t border-gray-200"></div>
+                    <div class="border-t border-yellow-200"></div>
 
                     <div class="block px-4 py-2 text-xs text-gray-400">
                         {{ __('Manage Team') }}
@@ -183,7 +186,7 @@
                         {{ __('Create New Team') }}
                     </x-jet-responsive-nav-link>
 
-                    <div class="border-t border-gray-200"></div>
+                    <div class="border-t border-yellow-200"></div>
 
                     <!-- Team Switcher -->
                     <div class="block px-4 py-2 text-xs text-gray-400">

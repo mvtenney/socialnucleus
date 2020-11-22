@@ -27,6 +27,7 @@
         "@fortawesome/fontawesome-free": "^5.15.1",
         "autoprefixer": "^10.0.2",
         "postcss": "^8.1.8",
+        "stripe": "^8.125.0",
         "tailwindcss": "^2.0.1",
         "webpack-cli": "^4.2.0"
     }
