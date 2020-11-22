@@ -15,12 +15,12 @@ use App\Http\Controllers\SocialController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('site.view');
+})->name('home');
 
 Route::get('/pricing', function () {
     return view('site.pricing');
-})->name('pricing');;
+})->name('pricing');
 
 
 
