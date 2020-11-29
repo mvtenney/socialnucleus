@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CampaignsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SocialController;
 
@@ -22,7 +23,9 @@ Route::get('/pricing', function () {
     return view('site.pricing');
 })->name('pricing');
 
-
+// Route::get('/phpinfo', function () {
+//     return view('info');
+// })->name('phpinfo');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
@@ -39,6 +42,19 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/schedule', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/requests', function () {
     return view('client.order.show');
 })->name('requests');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/templates', function () {
+    return view('templates.index');
+})->name('templates');
+
+Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
+    Route::get('/campaigns/create', [CampaignsController::class, 'create'])->name('create_campaign');
+    Route::get('/campaigns/{campaign}', [CampaignsController::class, 'show'])->name('view_campaign');
+    Route::get('/campaigns', [CampaignsController::class, 'index'])->name('campaigns');
+    Route::post('/campaigns', [CampaignsController::class, 'store'])->name('store_campaign');
+});
+
+
 
 Route::get('auth/facebook', [SocialController::class, 'facebookRedirect']);
 
