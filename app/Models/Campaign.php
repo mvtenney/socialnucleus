@@ -33,6 +33,21 @@ class Campaign extends Model
 
     public function team()
     {
-        return $this->belongsTo(Team::class, 'team_id');
+        return $this->belongsTo(Team::class);
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    public function tasks()
+    {
+        return $this->hasMany(CampaignTasks::class);
+    }
+
+    public function addTask($attributes)
+    {
+        return $this->tasks()->create($attributes);
     }
 }

@@ -13,7 +13,6 @@ class CampaignsController extends Controller
     }
 
     public function show(Campaign $campaign) {
-        $user = auth()->user();
         if (auth()->user()->isNot($campaign->owner)){
             abort(403);
         }
@@ -40,9 +39,9 @@ class CampaignsController extends Controller
             'description' => 'required',
         ]);
         $attributes['team_id'] = $team_id;
-        auth()->user()->campaigns()->create($attributes);
+        $campaign = auth()->user()->campaigns()->create($attributes);
 
-        return redirect('/campaigns');
+        return redirect($campaign->path());
     }
 
     public function delete(){

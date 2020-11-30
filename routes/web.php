@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CampaignsController;
+use App\Http\Controllers\CampaignTasksController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SocialController;
 
@@ -51,7 +52,13 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/campaigns/create', [CampaignsController::class, 'create'])->name('create_campaign');
     Route::get('/campaigns/{campaign}', [CampaignsController::class, 'show'])->name('view_campaign');
     Route::get('/campaigns', [CampaignsController::class, 'index'])->name('campaigns');
+
+    Route::get('/campaigns/{campaign}/tasks/create', [CampaignTasksController::class, 'create'])->name('create_task');
+    Route::get('/campaigns/{campaign}/tasks/{task}', [CampaignTasksController::class, 'show'])->name('view_task');
+    Route::get('/campaigns/{campaign}/tasks', [CampaignTasksController::class, 'index'])->name('view_tasks');
+
     Route::post('/campaigns', [CampaignsController::class, 'store'])->name('store_campaign');
+    Route::post('/campaigns/{campaign}/tasks', [CampaignTasksController::class, 'store'])->name('store_task');
 });
 
 

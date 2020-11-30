@@ -5,6 +5,24 @@
     font-family: 'Staatliches', cursive;
 }
 
+.yellow-btn {
+    @apply px-4 py-2 font-semibold text-white bg-yellow-500 rounded-md shadow-md hover:shadow-none hover:bg-yellow-600;
+}
+.green-btn {
+    @apply px-4 py-2 font-semibold text-white bg-green-500 rounded-md shadow-md hover:shadow-none hover:bg-green-600;
+}
+.card {
+    @apply flex flex-col justify-between p-4 bg-white rounded-md shadow-md hover:shadow-lg;
+}
+
+.no-pad {
+    @apply p-0;
+}
+
+.section-heading {
+    @apply my-4 text-sm tracking-wide uppercase;
+}
+
 /* @import '@fortawesome/fontawesome-free/css/all.css'; */
 body {
     animation-delay: 0.1s;

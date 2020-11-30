@@ -2,18 +2,18 @@
 
 namespace Database\Factories;
 
-use App\Models\Post;
 use App\Models\User;
+use App\Models\CampaignTask;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class PostFactory extends Factory
+class CampaignTaskFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Post::class;
+    protected $model = CampaignTask::class;
 
     /**
      * Define the model's default state.
@@ -23,19 +23,19 @@ class PostFactory extends Factory
     public function definition()
     {
         $user = User::factory()->create();
-        $type = ['post', 'video'];
-        $status = ['draft', 'published'];
+        $type = ['content_request', 'brainstorm'];
+        $status = ['backlog', 'published'];
+        $priority = [1,2,3];
         return [
             'user_id' => $user->id,
             'team_id' => $user->currentTeam->id,
             'campaign_id' => $user->campaigns()->inRandomOrder()->first(),
-            'description' => $this->faker->paragraph,
+            'assigned_to' => $user->id,
             'title' => $this->faker->words(4, true),
-            'status' => $status[array_rand($status)],
+            'body' => $this->faker->paragraph,
             'type'    => $type[array_rand($type)],
-            'photo_path' => $this->faker->imageUrl($width = 225, $height = 225),
-            'hashtags' => $this->faker->words(6, false),
-            'body' => $this->faker->realText($maxNbChars = 140, $indexSize = 2),
+            'status' => $status[array_rand($status)],
+            'priority' => $priority[array_rand($priority)],
         ];
     }
 }

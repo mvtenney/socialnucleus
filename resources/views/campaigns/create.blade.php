@@ -22,7 +22,8 @@
                 <input name="title" type="text" placeholder="Campaign Title" class="p-2 mb-8 rounded-md shadow-md text-md">
                 <textarea name="description" id="description_field" cols="30" rows="10" class="p-2 mb-8 rounded-md shadow-md text-md" placeholder="Enter a Description for this campaign"></textarea>
                 <div class="flex align-middle">
-                    <button type="submit" class="block px-4 py-2 font-semibold text-white bg-yellow-500 rounded-md shadow-md hover:shadow-none hover:bg-yellow-600">Submit</button><a href="{{route('campaigns')}}" class="block px-4 py-2 text-red-500 hover:text-red-600">cancel</a>
+                    <button type="submit" class="block px-4 py-2 font-semibold text-white bg-yellow-500 rounded-md shadow-md hover:shadow-none hover:bg-yellow-600">Submit</button>
+                    <a href="{{route('campaigns')}}" class="block px-4 py-2 text-red-500 hover:text-red-600">cancel</a>
                 </div>
            </form>
         </div>

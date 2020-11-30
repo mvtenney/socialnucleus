@@ -16,7 +16,7 @@ class CampaignsTest extends TestCase
     /** @test */
     public function a_user_can_create_a_campaign()
     {
-        $this->be(User::factory()->create());
+        $this->signIn();
         $this->get(route('create_campaign'))->assertStatus(200);
         $attributes = [
             'user_id' => auth()->id(),
@@ -47,7 +47,7 @@ class CampaignsTest extends TestCase
     /** @test */
     public function an_authenticated_user_cannot_view_the_campaigns_of_others()
     {
-        $this->be(User::factory()->create());
+        $this->signIn();
 
         $campaign = Campaign::factory()->create();
 
@@ -68,7 +68,7 @@ class CampaignsTest extends TestCase
     /** @test */
     public function a_campaign_belongs_to_an_owner()
     {
-        $this->be(User::factory()->create());
+        $this->signIn();
         $campaign = Campaign::factory()->create([
             'user_id' => auth()->id(),
             'team_id' => auth()->user()->currentTeam->id,
@@ -79,7 +79,7 @@ class CampaignsTest extends TestCase
     /** @test */
     public function a_campaign_belongs_to_a_team()
     {
-        $this->be(User::factory()->create());
+        $this->signIn();
         $campaign = Campaign::factory()->create([
             'user_id' => auth()->id(),
             'team_id' => auth()->user()->currentTeam->id,
@@ -90,7 +90,7 @@ class CampaignsTest extends TestCase
     /** @test */
     public function a_campaign_requires_a_team()
     {
-        $this->actingAs(User::factory()->create());
+        $this->signIn();
         $campaign = Campaign::factory()->create(['user_id' => auth()->id()]);
         $this->get($campaign->path())->assertStatus(403);
     }
@@ -98,7 +98,7 @@ class CampaignsTest extends TestCase
     /** @test */
     public function a_campaign_requires_a_title()
     {
-        $this->actingAs(User::factory()->create());
+        $this->signIn();
         $attributes = Campaign::factory()->raw(['title' => '']);
         $this->post('/campaigns', $attributes)->assertSessionHasErrors('title');
     }
@@ -106,12 +106,8 @@ class CampaignsTest extends TestCase
     /** @test */
     public function a_campaign_requires_a_description()
     {
-        $this->actingAs(User::factory()->create());
+        $this->signIn();
         $attributes = Campaign::factory()->raw(['description' => '']);
         $this->post('/campaigns', $attributes)->assertSessionHasErrors('description');
     }
-
-    // if (auth()->id() !== $campaign->user_id){
-    //     abort(403);
-    // }
 }
