@@ -24,7 +24,7 @@ class TemplateFactory extends Factory
     {
         $type = ['post', 'video'];
         $status = ['draft', 'published'];
-        $user = User::inRandomOrder()->first();
+        $user = User::inRandomOrder()->first() ?? User::factory()->create();
         return [
             'user_id' => $user->id,
             'team_id' => $user->current_team_id,

@@ -22,7 +22,7 @@ class CampaignFactory extends Factory
      */
     public function definition()
     {
-        $user = User::factory()->create();
+        $user = User::inRandomOrder()->first() ?? User::factory()->create();
         return [
             'user_id' => $user->id,
             'team_id' => $user->currentTeam->id,

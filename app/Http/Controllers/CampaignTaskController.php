@@ -6,15 +6,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Campaign;
-use App\Models\CampaignTasks;
+use App\Models\CampaignTask;
 
-class CampaignTasksController extends Controller
+class CampaignTaskController extends Controller
 {
     public function index(Campaign $campaign) {
         return view('tasks.index', compact(['campaign']));
     }
 
-    public function show(Campaign $campaign, CampaignTasks $task) {
+    public function show(Campaign $campaign, CampaignTask $task) {
         $assigned_user = User::where('id', $task->assigned_to)->firstOrFail();
 
         if (auth()->user()->currentTeam->isNot($campaign->team)){

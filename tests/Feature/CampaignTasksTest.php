@@ -8,9 +8,8 @@ use Tests\TestCase;
 use App\Models\Campaign;
 use App\Models\User;
 use App\Models\Team;
-// use App\Models\Task;
 
-class CampaignTasksTest extends TestCase
+class CampaignTaskTest extends TestCase
 {
     use RefreshDatabase;
 

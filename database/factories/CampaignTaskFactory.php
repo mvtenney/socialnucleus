@@ -22,7 +22,7 @@ class CampaignTaskFactory extends Factory
      */
     public function definition()
     {
-        $user = User::factory()->create();
+        $user = User::inRandomOrder()->first() ?? User::factory()->create();
         $type = ['content_request', 'brainstorm'];
         $status = ['backlog', 'published'];
         $priority = [1,2,3];

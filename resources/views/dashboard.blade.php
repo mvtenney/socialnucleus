@@ -19,7 +19,7 @@
                             </a>
                             <a href="{{route('campaigns')}}" class="items-center justify-center card">
                                 <h3 class="mt-4 leading-none tracking-wider text-center uppercase text-md">Pending Tasks</h3>
-                                <p class="my-4 text-4xl">{{App\Models\CampaignTasks::where('status', 'pending')->count()}}</p>
+                                <p class="my-4 text-4xl">{{App\Models\CampaignTask::where('status', 'pending')->count()}}</p>
                             </a>
                             <a href="#" class="items-center justify-center card">
                                 <h3 class="mt-4 leading-none tracking-wider text-center uppercase text-md">Posts not Published</h3>

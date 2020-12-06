@@ -22,7 +22,7 @@ class PostFactory extends Factory
      */
     public function definition()
     {
-        $user = User::factory()->create();
+        $user = User::inRandomOrder()->first() ?? User::factory()->create();
         $type = ['post', 'video'];
         $status = ['draft', 'published'];
         return [

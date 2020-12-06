@@ -3,9 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\CampaignTask;
+use App\Models\Campaign;
 
-class CampaignTaskSeeder extends Seeder
+class CampaignSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class CampaignTaskSeeder extends Seeder
      */
     public function run()
     {
-        CampaignTask::factory()->count(12)->create();
+        Campaign::factory()->count(12)->create();
     }
 }

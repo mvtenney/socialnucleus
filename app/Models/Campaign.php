@@ -43,7 +43,7 @@ class Campaign extends Model
 
     public function tasks()
     {
-        return $this->hasMany(CampaignTasks::class);
+        return $this->hasMany(CampaignTask::class);
     }
 
     public function addTask($attributes)
