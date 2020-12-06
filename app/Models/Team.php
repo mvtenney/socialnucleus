@@ -43,4 +43,13 @@ class Team extends JetstreamTeam
     {
         return $this->hasMany(Campaign::class);
     }
+    public function tasks()
+    {
+        return $this->hasMany(CampaignTask::class);
+    }
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+    
 }
