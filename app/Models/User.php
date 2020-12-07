@@ -74,9 +74,4 @@ class User extends Authenticatable
     {
         return $this->hasMany(CampaignTask::class);
     }
-
-    public function teams()
-    {
-        return $this->hasMany(Team::class);
-    }
 }

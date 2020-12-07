@@ -4,7 +4,6 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
-
     <div class="pt-24">
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
 
@@ -31,7 +30,7 @@
                             </a>
                             <a href="#" class="items-center justify-center card">
                                 <h3 class="mt-4 leading-none tracking-wider text-center uppercase text-md">Team Members</h3>
-                                <p class="my-4 text-4xl">{{ auth()->user()->currentTeam->users->count() + 1}}</p>
+                                <p class="my-4 text-4xl">{{ Auth::user()->currentTeam->allUsers()->count()}}</p>
                             </a>
                         </div>
 
@@ -72,12 +71,12 @@
                 <div class="flex flex-col col-span-1">
                     <h2 class="mx-2 mb-4 text-2xl">Team Members</h2>
                     <div class="card">
-                        @foreach (auth()->user()->currentTeam->users as $user)
+                        @foreach (auth()->user()->currentTeam->allUsers() as $user)
                             <div class="flex items-center justify-start my-2">
                                 <img class="h-12 mr-4 rounded-full" src="{{$user->profile_photo_url}}" alt="">
                                 <div>
                                     <p class="text-semibold">{{$user->name}}</p>
-                                    <p class="text-xs">{{ Laravel\Jetstream\Jetstream::findRole($user->membership->role)->name }}</p>
+                                    <p class="text-xs">{{ $user->teamRole(auth()->user()->currentTeam)->name }}</p>
                                 </div>
                             </div>
                             @if(!$loop->last)

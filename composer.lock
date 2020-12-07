@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b484b9f97febe96c2f20fa1eea551b6d",
+    "content-hash": "6ffbefa9072672bf1dee53a5f869c608",
     "packages": [
         {
             "name": "alchemy/binary-driver",
@@ -9732,7 +9732,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "laravel/jetstream": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
