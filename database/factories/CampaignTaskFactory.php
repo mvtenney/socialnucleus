@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\User;
+use App\Models\Campaign;
 use App\Models\CampaignTask;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -22,14 +23,15 @@ class CampaignTaskFactory extends Factory
      */
     public function definition()
     {
-        $user = User::inRandomOrder()->first() ?? User::factory()->create();
+        $campaign = Campaign::inRandomOrder()->first();
+        $user = $campaign->owner ?? User::factory()->create();
         $type = ['content_request', 'brainstorm'];
         $status = ['backlog', 'published'];
         $priority = [1,2,3];
         return [
             'user_id' => $user->id,
             'team_id' => $user->currentTeam->id,
-            'campaign_id' => $user->campaigns()->inRandomOrder()->first(),
+            'campaign_id' => $campaign->id,
             'assigned_to' => $user->id,
             'title' => $this->faker->words(4, true),
             'body' => $this->faker->paragraph,

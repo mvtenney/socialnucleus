@@ -3,11 +3,11 @@
        <div class="flex justify-between">
             <div class="breadcrumbs">
                 <h2 class="text-xl font-semibold leading-tight text-gray-800">
-                    <a href="{{route('campaigns')}}">{{ __('Campaigns') }}</a> > <a href="{{route('view_campaign', $campaign)}}">{{$campaign->title}}</a> > <a href="{{route('view_tasks', $campaign)}}">{{ __('Tasks') }}</a> > New Task
+                    <a href="{{route('campaigns')}}">{{ __('Campaigns') }}</a> > <a href="{{route('view_campaign', $campaign)}}">{{$campaign->title}}</a> > <a href="{{route('tasks', $campaign)}}">{{ __('Tasks') }}</a> > New Task
                 </h2>
             </div>
             <div class="controls">
-                <a href="{{route('view_tasks', $campaign)}}" class="px-4 py-2 font-semibold text-white bg-red-500 rounded-md shadow-md hover:shadow-none hover:bg-red-600">Cancel</a>
+                <a href="{{route('tasks', $campaign)}}" class="px-4 py-2 font-semibold text-white bg-red-500 rounded-md shadow-md hover:shadow-none hover:bg-red-600">Cancel</a>
             </div>
        </div>
     </x-slot>
@@ -56,7 +56,7 @@
 
                 <div class="flex align-middle">
                     <button type="submit" class="block px-4 py-2 font-semibold text-white bg-yellow-500 rounded-md shadow-md hover:shadow-none hover:bg-yellow-600">Submit</button>
-                    <a href="{{route('view_tasks', $campaign)}}" class="block px-4 py-2 text-red-500 hover:text-red-600">cancel</a>
+                    <a href="{{route('tasks', $campaign)}}" class="block px-4 py-2 text-red-500 hover:text-red-600">cancel</a>
                 </div>
            </form>
         </div>

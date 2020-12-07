@@ -53,12 +53,12 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/campaigns/{campaign}', [CampaignsController::class, 'show'])->name('view_campaign');
     Route::get('/campaigns', [CampaignsController::class, 'index'])->name('campaigns');
 
-    Route::get('/campaigns/{campaign}/tasks/create', [CampaignTaskController::class, 'create'])->name('create_task');
-    Route::get('/campaigns/{campaign}/tasks/{task}', [CampaignTaskController::class, 'show'])->name('view_task');
-    Route::get('/campaigns/{campaign}/tasks', [CampaignTaskController::class, 'index'])->name('view_tasks');
+    Route::get('/tasks/create', [CampaignTaskController::class, 'create'])->name('create_task');
+    Route::get('/tasks/{task}', [CampaignTaskController::class, 'show'])->name('view_task');
+    Route::get('/tasks', [CampaignTaskController::class, 'index'])->name('tasks');
 
     Route::post('/campaigns', [CampaignsController::class, 'store'])->name('store_campaign');
-    Route::post('/campaigns/{campaign}/tasks', [CampaignTaskController::class, 'store'])->name('store_task');
+    Route::post('/tasks', [CampaignTaskController::class, 'store'])->name('store_task');
 });
 
 

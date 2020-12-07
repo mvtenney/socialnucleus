@@ -2,36 +2,37 @@
 
 namespace App\Http\Controllers;
 
-
-use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Campaign;
 use App\Models\CampaignTask;
+use Illuminate\Http\Request;
 
 class CampaignTaskController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index(Campaign $campaign) {
         return view('tasks.index', compact(['campaign']));
     }
 
-    public function show(Campaign $campaign, CampaignTask $task) {
-        $assigned_user = User::where('id', $task->assigned_to)->firstOrFail();
-
-        if (auth()->user()->currentTeam->isNot($campaign->team)){
-            abort(403);
-        }
-
-        return view('tasks.show', compact(['campaign', 'task', 'assigned_user']));
-    }
-
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create(Campaign $campaign) {
         return view('tasks.create', compact(['campaign']));
     }
 
-    public function edit() {
-
-    }
-
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Campaign $campaign) {
         $team_id = auth()->user()->currentTeam->id;
 
@@ -53,19 +54,55 @@ class CampaignTaskController extends Controller
         return redirect($task->path());
     }
 
-    // public function store() {
-    //     $team_id = auth()->user()->currentTeam->id;
-    //     $attributes = request()->validate([
-    //         'title' => 'required',
-    //         'description' => 'required',
-    //     ]);
-    //     $attributes['team_id'] = $team_id;
-    //     $campaign = auth()->user()->campaigns()->create($attributes);
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\CampaignTask  $campaignTask
+     * @return \Illuminate\Http\Response
+     */
+    public function show(CampaignTask $task)
+    {
 
-    //     return redirect($campaign->path());
-    // }
 
-    public function delete(){
+        // if (auth()->user()->currentTeam->isNot($campaign->team))
+        // {
+        //     abort(403);
+        // }
 
+        return view('tasks.show', compact(['task']));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\CampaignTask  $campaignTask
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(CampaignTask $campaignTask)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\CampaignTask  $campaignTask
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, CampaignTask $campaignTask)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\CampaignTask  $campaignTask
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(CampaignTask $campaignTask)
+    {
+        //
     }
 }

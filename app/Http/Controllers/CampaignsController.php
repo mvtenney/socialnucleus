@@ -8,14 +8,14 @@ use App\Models\Campaign;
 class CampaignsController extends Controller
 {
     public function index() {
-        $campaigns = auth()->user()->campaigns;
+        $campaigns = auth()->user()->currentTeam->campaigns;
         return view('campaigns.index', compact('campaigns'));
     }
 
     public function show(Campaign $campaign) {
-        if (auth()->user()->isNot($campaign->owner)){
-            abort(403);
-        }
+        // if (auth()->user()->isNot($campaign->owner)){
+        //     abort(403);
+        // }
 
         if (auth()->user()->currentTeam->isNot($campaign->team)){
             abort(403);
@@ -39,7 +39,7 @@ class CampaignsController extends Controller
             'description' => 'required',
         ]);
         $attributes['team_id'] = $team_id;
-        $campaign = auth()->user()->campaigns()->create($attributes);
+        $campaign = auth()->user()->campaigns->create($attributes);
 
         return redirect($campaign->path());
     }

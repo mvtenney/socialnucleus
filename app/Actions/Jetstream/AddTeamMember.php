@@ -14,9 +14,9 @@ class AddTeamMember implements AddsTeamMembers
     /**
      * Add a new team member to the given team.
      *
-     * @param  mixed  $user
+     * @param  mixed  team admin's $user
      * @param  mixed  $team
-     * @param  string  $email
+     * @param  string new member's $email
      * @param  string|null  $role
      * @return void
      */

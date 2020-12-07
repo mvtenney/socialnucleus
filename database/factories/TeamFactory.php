@@ -1,0 +1,32 @@
+<?php
+
+namespace Database\Factories;
+
+use App\Models\User;
+use App\Models\Team;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class TeamFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Team::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        $user = User::inRandomOrder()->first() ?? User::factory()->create();
+        return [
+            'user_id' => $user->id,
+            'name' => $this->faker->words(2, true),
+            'personal_team' => false,
+        ];
+    }
+}

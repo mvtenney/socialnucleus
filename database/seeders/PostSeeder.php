@@ -14,6 +14,6 @@ class PostSeeder extends Seeder
      */
     public function run()
     {
-        Post::factory()->count(12)->create();
+        Post::factory()->count(100)->create();
     }
 }

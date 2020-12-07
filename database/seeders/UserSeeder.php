@@ -4,6 +4,11 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use App\Models\Team;
+use Illuminate\Support\Str;
+use App\Actions\Fortify;
+use App\Actions\Jetstream;
+use Faker\Factory as Faker;
 
 class UserSeeder extends Seeder
 {
@@ -14,6 +19,22 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::factory()->count(12)->create();
+        $faker = Faker::create();
+        for ($i = 0; $i <= 60; $i++){
+            $userCreate = new Fortify\CreateNewUser();
+
+            $user = $userCreate->create([
+                'name' => $faker->name,
+                'email' => $faker->unique()->safeEmail,
+                'password' => 'password', // password
+                'password_confirmation' => 'password',
+            ]);
+
+            User::where('id', $user->id)->update(array(
+                'email_verified_at' => now(),
+                'remember_token' => Str::random(10),
+                'profile_photo_path' => $faker->imageUrl(250,250),
+            ));
+        }
     }
 }
