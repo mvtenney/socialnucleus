@@ -28,7 +28,7 @@ class CampaignTask extends Model
 
     public function path()
     {
-        return "/campaigns/{$this->campaign->id}/tasks/{$this->id}";
+        return "/tasks/{$this->id}";
     }
 
     public function getType()

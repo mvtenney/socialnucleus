@@ -15,16 +15,17 @@ class CampaignTaskController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Campaign $campaign) {
-        return view('tasks.index', compact(['campaign']));
+        return view('tasks.index', compact('campaign'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
+     * @param  \App\Models\Campaign  $campaign
      * @return \Illuminate\Http\Response
      */
     public function create(Campaign $campaign) {
-        return view('tasks.create', compact(['campaign']));
+        return view('tasks.create', compact('campaign'));
     }
 
     /**
@@ -36,7 +37,6 @@ class CampaignTaskController extends Controller
     public function store(Campaign $campaign) {
         $team_id = auth()->user()->currentTeam->id;
 
-
         $attributes = request()->validate([
             'title' => 'required',
             'body' => 'required',
@@ -44,11 +44,11 @@ class CampaignTaskController extends Controller
             'assigned_to' => 'required',
             'status' => 'required',
             'priority' => 'required',
+            'campaign_id' => 'required',
         ]);
 
         $attributes['user_id'] = auth()->id();
         $attributes['team_id'] = $team_id;
-        $attributes['campaign_id'] = $campaign->id;
 
         $task = $campaign->addTask($attributes);
         return redirect($task->path());
@@ -69,7 +69,7 @@ class CampaignTaskController extends Controller
         //     abort(403);
         // }
 
-        return view('tasks.show', compact(['task']));
+        return view('tasks.show', compact('task'));
     }
 
     /**

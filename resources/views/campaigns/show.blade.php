@@ -7,7 +7,7 @@
                 </h2>
             </div>
             <div class="controls">
-                <a href="{{route('requests')}}" class="yellow-btn">Create Request</a>
+                <a href="{{route('create_task', $campaign)}}" class="yellow-btn">Create Task</a>
             </div>
        </div>
     </x-slot>

@@ -39,7 +39,7 @@ class CampaignsController extends Controller
             'description' => 'required',
         ]);
         $attributes['team_id'] = $team_id;
-        $campaign = auth()->user()->campaigns->create($attributes);
+        $campaign = auth()->user()->campaigns()->create($attributes);
 
         return redirect($campaign->path());
     }
