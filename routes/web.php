@@ -3,6 +3,7 @@
 use App\Http\Controllers\CampaignsController;
 use App\Http\Controllers\CampaignTaskController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 use App\Http\Controllers\SocialController;
 
 /*
@@ -48,14 +49,23 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/templates', function () {
     return view('templates.index');
 })->name('templates');
 
-Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
+Route::middleware(['auth:sanctum', 'verified', 'nonPayingCustomer'])->get('/subscribe', function () {
+    return view('client.subscribe', ['intent' => auth()->user()->createSetupIntent(), ]);
+})->name('subscribe');
+
+Route::middleware(['auth:sanctum', 'verified', 'nonPayingCustomer'])->post('/subscribe', function (Request $request) {
+    auth()->user()->newSubscription('Mosaic Subscription', $request->plan)->create($request->paymentMethod);
+    return redirect('/dashboard');
+})->name('subscribe.post');
+
+Route::group(['middleware' => ['auth:sanctum', 'verified', 'payingCustomer']], function () {
     Route::get('/campaigns/create', [CampaignsController::class, 'create'])->name('create_campaign');
     Route::get('/campaigns/{campaign}', [CampaignsController::class, 'show'])->name('view_campaign');
     Route::get('/campaigns', [CampaignsController::class, 'index'])->name('campaigns');
 
     Route::get('/campaigns/{campaign}/tasks/create', [CampaignTaskController::class, 'create'])->name('create_task');
-    Route::get('/tasks/{task}', [CampaignTaskController::class, 'show'])->name('view_task');
-    Route::get('/tasks', [CampaignTaskController::class, 'index'])->name('tasks');
+    Route::get('/campaigns/{campaign}/tasks/{task}', [CampaignTaskController::class, 'show'])->name('view_task');
+    Route::get('/campaigns/{campaign}/tasks', [CampaignTaskController::class, 'index'])->name('tasks');
 
     Route::post('/campaigns', [CampaignsController::class, 'store'])->name('store_campaign');
     Route::post('/campaigns/{campaign}/tasks', [CampaignTaskController::class, 'store'])->name('store_task');

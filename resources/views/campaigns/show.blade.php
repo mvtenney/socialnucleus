@@ -21,7 +21,7 @@
                         <h3 class="section-heading">Tasks</h3>
                         <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                             @forelse ($campaign->tasks as $task)
-                                <a href="{{ route('view_task', $task) }}" class="card">
+                                <a href="{{ $task->path() }}" class="card">
                                     <h3 class="px-4 mb-2 -ml-4 text-lg font-normal capitalize border-l-4 border-yellow-500">{{ str_limit($task->title, 60) }}</h3>
                                     <p class="text-gray-400 border-l-4 border-white">{{ str_limit($task->body, 100) }}</p>
                                     <button class="flex self-end mt-2 text-sm transition duration-150 ease-in-out border-2 rounded-full shadow-sm border-grey-200focus:outline-none hover:border-yellow-500">

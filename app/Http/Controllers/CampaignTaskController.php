@@ -60,7 +60,7 @@ class CampaignTaskController extends Controller
      * @param  \App\Models\CampaignTask  $campaignTask
      * @return \Illuminate\Http\Response
      */
-    public function show(CampaignTask $task)
+    public function show(Campaign $campaign, CampaignTask $task)
     {
 
 

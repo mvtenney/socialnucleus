@@ -15,21 +15,29 @@
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('approvals') }}" :active="request()->routeIs('approvals')">
+                    @if (auth()->user()->subscribed('Mosaic Subscription'))
+                        <x-jet-nav-link href="{{ route('campaigns') }}" :active="request()->routeIs('campaigns')">
+                            {{ __('Campaigns') }}
+                        </x-jet-nav-link>
+                        <x-jet-nav-link href="{{ route('templates') }}" :active="request()->routeIs('templates')">
+                            {{ __('Templates') }}
+                        </x-jet-nav-link>
+                    @endif
+                    @if (!auth()->user()->subscribed('Mosaic Subscription'))
+                        <x-jet-nav-link href="{{ route('subscribe') }}" :active="request()->routeIs('subscribe')">
+                            {{ __('Subscribe') }}
+                        </x-jet-nav-link>
+                    @endif
+                    {{-- <x-jet-nav-link href="{{ route('approvals') }}" :active="request()->routeIs('approvals')">
                         {{ __('Approvals') }}
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('schedule') }}" :active="request()->routeIs('schedule')">
                         {{ __('Calendar') }}
-                    </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('templates') }}" :active="request()->routeIs('templates')">
-                        {{ __('Templates') }}
-                    </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('requests') }}" :active="request()->routeIs('schedule')">
+                    </x-jet-nav-link> --}}
+                    {{-- <x-jet-nav-link href="{{ route('requests') }}" :active="request()->routeIs('schedule')">
                         {{ __('Requests') }}
-                    </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('campaigns') }}" :active="request()->routeIs('campaigns')">
-                        {{ __('Campaigns') }}
-                    </x-jet-nav-link>
+                    </x-jet-nav-link> --}}
+
                 </div>
             </div>
 

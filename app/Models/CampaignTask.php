@@ -26,9 +26,14 @@ class CampaignTask extends Model
         return $this->belongsTo(Campaign::class);
     }
 
+    public function root()
+    {
+        return "/campaigns/{$this->campaign->id}/tasks/";
+    }
+
     public function path()
     {
-        return "/tasks/{$this->id}";
+        return "/campaigns/{$this->campaign->id}/tasks/{$this->id}";
     }
 
     public function getType()
